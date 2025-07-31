@@ -82,6 +82,10 @@ router.get("/confirm-email", (req, res) => {
   res.render("confirm-email");
 });
 
+router.get("/notify-email", (req, res) => {
+  res.render("notify-email");
+});
+
 router.post("/progress-saved", (req, res) => {
   res.redirect("/progress-saved");
 });

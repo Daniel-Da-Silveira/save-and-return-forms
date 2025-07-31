@@ -14,13 +14,34 @@ Welcome back to your form – {{ serviceName }} – GOV.UK
         </h1>
 
         <p class="govuk-body">
-            {{ data['fullName'] or 'You' }} – let's work together on this page.
+            You will return to the page where you saved your progress unless new questions have been added to the form.
         </p>
 
-        {{ govukButton({
-        text: "Continue with your form",
-        href: "/check-answers"
+        {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+        {{ govukWarningText({
+        text: "If new questions have been added to the form, you will be taken to the earliest new question."
         }) }}
+
+        <p class="govuk-body">
+            You will need to repeat the save process again and generate a new link if you want to save your progress in
+            the future.
+        </p>
+
+        {% from "govuk/components/button/macro.njk" import govukButton %}
+
+        <div class="govuk-button-group">
+            {{ govukButton({
+            text: "Resume form",
+            href: "/check-answers"
+            }) }}
+
+            {{ govukButton({
+            text: "Cancel",
+            classes: "govuk-button--secondary",
+            href: "/"
+            }) }}
+        </div>
 
     </div>
 </div>
