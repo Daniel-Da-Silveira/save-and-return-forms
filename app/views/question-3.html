@@ -1,0 +1,78 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+What type of incident are you reporting? – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "/question-2"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form class="form" action="/question-4" method="post">
+
+            {{ govukSelect({
+            id: "incident-type",
+            name: "incidentType",
+            label: {
+            text: "What type of incident are you reporting?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+            },
+            items: [
+            {
+            value: "",
+            text: "Select an incident type"
+            },
+            {
+            value: "pollution",
+            text: "Water pollution"
+            },
+            {
+            value: "air-pollution",
+            text: "Air pollution"
+            },
+            {
+            value: "waste-dumping",
+            text: "Illegal waste dumping"
+            },
+            {
+            value: "habitat-damage",
+            text: "Damage to protected habitats"
+            },
+            {
+            value: "invasive-species",
+            text: "Invasive species sighting"
+            },
+            {
+            value: "other",
+            text: "Other"
+            }
+            ]
+            }) }}
+
+            <div class="govuk-button-group">
+                {{ govukButton({
+                text: "Continue"
+                }) }}
+
+                {{ govukButton({
+                text: "Save and exit",
+                classes: "govuk-button--secondary",
+                href: "/save-progress"
+                }) }}
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

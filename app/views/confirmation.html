@@ -1,0 +1,43 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Report submitted – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukPanel({
+        titleText: "Report submitted",
+        html: "Your reference number<br><strong>HDJ2123F</strong>"
+        }) }}
+
+        <h2 class="govuk-heading-m">What happens next</h2>
+
+        <p class="govuk-body">
+            We've sent you a confirmation email with your reference number.
+        </p>
+
+        <p class="govuk-body">
+            We'll review your report and contact you if we need more information.
+            If your report is urgent, we'll respond within 24 hours.
+        </p>
+
+        <h2 class="govuk-heading-m">What you can do</h2>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>Keep any evidence you mentioned in your report</li>
+            <li>Note your reference number for future contact</li>
+            <li>Contact us if you have additional information</li>
+        </ul>
+
+        <p class="govuk-body">
+            <a href="/question-1" class="govuk-link">Report another incident</a>
+        </p>
+
+    </div>
+</div>
+
+{% endblock %}

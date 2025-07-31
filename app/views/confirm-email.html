@@ -1,0 +1,59 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Confirm your email address is correct – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "/save-progress"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            Confirm your email address is correct
+        </h1>
+
+        <p class="govuk-body">
+            Check you have entered your email address correctly.
+        </p>
+
+        <form class="form" action="/confirm-email" method="post">
+
+            {{ govukInput({
+            label: {
+            text: "Your email address",
+            classes: "govuk-label--m"
+            },
+            id: "email",
+            name: "email",
+            type: "email",
+            value: data['email'],
+            readonly: true,
+            classes: "govuk-input--readonly"
+            }) }}
+
+            <div class="govuk-button-group">
+                {{ govukButton({
+                text: "Continue"
+                }) }}
+
+                {{ govukButton({
+                text: "Cancel",
+                classes: "govuk-button--secondary",
+                href: "/save-progress"
+                }) }}
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Describe what happened – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "/question-3"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form class="form" action="/question-5" method="post">
+
+            {{ govukTextarea({
+            name: "incident-description",
+            id: "incident-description",
+            label: {
+            text: "Describe what happened",
+            classes: "govuk-label--l",
+            isPageHeading: true
+            },
+            hint: {
+            text: "Include details about what you observed, when it happened, and any other relevant information."
+            },
+            rows: "5"
+            }) }}
+
+            <div class="govuk-button-group">
+                {{ govukButton({
+                text: "Continue"
+                }) }}
+
+                {{ govukButton({
+                text: "Save and exit",
+                classes: "govuk-button--secondary",
+                href: "/save-progress"
+                }) }}
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

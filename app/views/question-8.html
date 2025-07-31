@@ -1,0 +1,75 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+What evidence do you have? – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "/question-7"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form class="form" action="/check-answers" method="post">
+
+            {{ govukCheckboxes({
+            idPrefix: "evidence",
+            name: "evidence",
+            fieldset: {
+            legend: {
+            text: "What evidence do you have?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+            }
+            },
+            hint: {
+            text: "This helps us investigate the incident more effectively."
+            },
+            items: [
+            {
+            value: "photos",
+            text: "Photographs"
+            },
+            {
+            value: "video",
+            text: "Video footage"
+            },
+            {
+            value: "witnesses",
+            text: "Witness statements"
+            },
+            {
+            value: "documents",
+            text: "Documents or records"
+            },
+            {
+            value: "none",
+            text: "No evidence available"
+            }
+            ]
+            }) }}
+
+            <div class="govuk-button-group">
+                {{ govukButton({
+                text: "Continue"
+                }) }}
+
+                {{ govukButton({
+                text: "Save and exit",
+                classes: "govuk-button--secondary",
+                href: "/save-progress"
+                }) }}
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

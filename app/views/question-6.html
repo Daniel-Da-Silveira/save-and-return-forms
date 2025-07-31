@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+When did the incident occur? – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "/question-5"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form class="form" action="/question-7" method="post">
+
+            {{ govukDateInput({
+            id: "incident-date",
+            namePrefix: "incidentDate",
+            fieldset: {
+            legend: {
+            text: "When did the incident occur?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+            }
+            },
+            hint: {
+            text: "For example, 27 3 2024"
+            }
+            }) }}
+
+            <div class="govuk-button-group">
+                {{ govukButton({
+                text: "Continue"
+                }) }}
+
+                {{ govukButton({
+                text: "Save and exit",
+                classes: "govuk-button--secondary",
+                href: "/save-progress"
+                }) }}
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,200 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Check your answers – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "/question-8"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-xl">
+      Check your answers before sending your report
+    </h1>
+
+    {{ govukSummaryList({
+    rows: [
+    {
+    key: {
+    text: "Full name"
+    },
+    value: {
+    text: data['fullName'] or "Not provided"
+    },
+    actions: {
+    items: [
+    {
+    href: "/question-1",
+    text: "Change",
+    visuallyHiddenText: "full name"
+    }
+    ]
+    }
+    },
+    {
+    key: {
+    text: "Email address"
+    },
+    value: {
+    text: data['email'] or "Not provided"
+    },
+    actions: {
+    items: [
+    {
+    href: "/question-2",
+    text: "Change",
+    visuallyHiddenText: "email address"
+    }
+    ]
+    }
+    },
+    {
+    key: {
+    text: "Phone number"
+    },
+    value: {
+    text: data['phone'] or "Not provided"
+    },
+    actions: {
+    items: [
+    {
+    href: "/question-2",
+    text: "Change",
+    visuallyHiddenText: "phone number"
+    }
+    ]
+    }
+    },
+    {
+    key: {
+    text: "Type of incident"
+    },
+    value: {
+    text: data['incidentType'] or "Not provided"
+    },
+    actions: {
+    items: [
+    {
+    href: "/question-3",
+    text: "Change",
+    visuallyHiddenText: "type of incident"
+    }
+    ]
+    }
+    },
+    {
+    key: {
+    text: "Description of incident"
+    },
+    value: {
+    text: data['incident-description'] or "Not provided"
+    },
+    actions: {
+    items: [
+    {
+    href: "/question-4",
+    text: "Change",
+    visuallyHiddenText: "description of incident"
+    }
+    ]
+    }
+    },
+    {
+    key: {
+    text: "Location"
+    },
+    value: {
+    text: data['location'] or "Not provided"
+    },
+    actions: {
+    items: [
+    {
+    href: "/question-5",
+    text: "Change",
+    visuallyHiddenText: "location"
+    }
+    ]
+    }
+    },
+    {
+    key: {
+    text: "Date of incident"
+    },
+    value: {
+    text: data['incidentDate-day'] + " " + data['incidentDate-month'] + " " + data['incidentDate-year'] if
+    data['incidentDate-day'] and data['incidentDate-month'] and data['incidentDate-year'] else "Not provided"
+    },
+    actions: {
+    items: [
+    {
+    href: "/question-6",
+    text: "Change",
+    visuallyHiddenText: "date of incident"
+    }
+    ]
+    }
+    },
+    {
+    key: {
+    text: "Urgency level"
+    },
+    value: {
+    text: data['urgency'] or "Not provided"
+    },
+    actions: {
+    items: [
+    {
+    href: "/question-7",
+    text: "Change",
+    visuallyHiddenText: "urgency level"
+    }
+    ]
+    }
+    },
+    {
+    key: {
+    text: "Evidence available"
+    },
+    value: {
+    text: data['evidence'] or "Not provided"
+    },
+    actions: {
+    items: [
+    {
+    href: "/question-8",
+    text: "Change",
+    visuallyHiddenText: "evidence available"
+    }
+    ]
+    }
+    }
+    ]
+    }) }}
+
+    <h2 class="govuk-heading-m">
+      Now send your report
+    </h2>
+
+    <p class="govuk-body">
+      By submitting this report you are confirming that, to the best of your knowledge, the details you are providing
+      are correct.
+    </p>
+
+    <form action="/confirmation" method="post" novalidate>
+
+      {{ govukButton({
+      text: "Accept and send report"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

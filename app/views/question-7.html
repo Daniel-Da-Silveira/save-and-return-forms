@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+How urgent is this incident? – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "/question-6"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form class="form" action="/question-8" method="post">
+
+            {{ govukRadios({
+            idPrefix: "urgency",
+            name: "urgency",
+            fieldset: {
+            legend: {
+            text: "How urgent is this incident?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+            }
+            },
+            items: [
+            {
+            value: "immediate",
+            text: "Immediate - requires immediate response (e.g., active pollution, fire)"
+            },
+            {
+            value: "urgent",
+            text: "Urgent - needs attention within 24 hours"
+            },
+            {
+            value: "standard",
+            text: "Standard - can be addressed within a few days"
+            }
+            ]
+            }) }}
+
+            <div class="govuk-button-group">
+                {{ govukButton({
+                text: "Continue"
+                }) }}
+
+                {{ govukButton({
+                text: "Save and exit",
+                classes: "govuk-button--secondary",
+                href: "/save-progress"
+                }) }}
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
