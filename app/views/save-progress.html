@@ -15,7 +15,17 @@ href: "javascript:window.history.back()"
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
+        {% if data.emailConfirmError %}
+        {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+        {
+        text: data.emailConfirmError,
+        href: "#email-confirm"
+        }
+        ]
+        }) }}
+        {% endif %}
         <h1 class="govuk-heading-l">
             Save your progress for later
         </h1>
@@ -28,6 +38,7 @@ href: "javascript:window.history.back()"
             We will email you with a link you can use to return to the form later. You will be asked for the answer to
             the security question when you resume your form.
         </p>
+
 
         <form class="form" action="/save-progress" method="post">
 
@@ -43,7 +54,33 @@ href: "javascript:window.history.back()"
             name: "email",
             type: "email",
             autocomplete: "email",
-            spellcheck: false
+            spellcheck: false,
+            value: data.email
+            }) }}
+
+            {{ govukInput({
+            label: {
+            text: "Confirm your email address",
+            classes: "govuk-label--m"
+
+            },
+            id: "email-confirm",
+            name: "emailConfirm",
+            type: "email",
+            autocomplete: "nope",
+            spellcheck: false,
+            value: data.emailConfirm,
+            errorMessage: data.emailConfirmError and {
+            text: data.emailConfirmError
+            },
+            attributes: {
+            onpaste: "return false;",
+            oncopy: "return false;",
+            oncut: "return false;",
+            oncontextmenu: "return false;",
+            readonly: "readonly",
+            onfocus: "this.removeAttribute('readonly');"
+            }
             }) }}
 
             {{ govukRadios({

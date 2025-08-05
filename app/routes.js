@@ -47,39 +47,39 @@ router.post("/confirmation", (req, res) => {
 
 // Save and exit functionality
 router.post("/save-progress", (req, res) => {
-  // Store the security answer for later validation
-  req.session.data.securityAnswer = req.body.securityAnswer;
-  req.session.data.securityQuestion = req.body.securityQuestion;
+  const email = req.body.email;
+  const emailConfirm = req.body.emailConfirm;
+  const securityAnswer = req.body.securityAnswer;
+  const securityQuestion = req.body.securityQuestion;
 
-  console.log("Saving progress - security answer:", req.body.securityAnswer);
-  console.log(
-    "Saving progress - security question:",
-    req.body.securityQuestion
-  );
+  // Store the security answer for later validation
+  req.session.data.securityAnswer = securityAnswer;
+  req.session.data.securityQuestion = securityQuestion;
+  req.session.data.email = email;
+
+  console.log("Saving progress - security answer:", securityAnswer);
+  console.log("Saving progress - security question:", securityQuestion);
+  console.log("Email:", email);
+  console.log("Email confirm:", emailConfirm);
+
+  // Validate email addresses match
+  if (!email || !emailConfirm) {
+    req.session.data.emailConfirmError = "Enter both email addresses";
+    return res.redirect("/save-progress");
+  }
+
+  if (email !== emailConfirm) {
+    req.session.data.emailConfirmError =
+      "Your email address does not match. Check and try again";
+    return res.redirect("/save-progress");
+  }
+
+  // Clear any previous errors
+  delete req.session.data.emailConfirmError;
+
   console.log("Session data after save:", req.session.data);
 
-  res.redirect("/confirm-email");
-});
-
-router.post("/confirm-email", (req, res) => {
-  // Preserve the security answer that was saved from save-progress
-  // The security answer should already be in req.session.data.securityAnswer
-  console.log(
-    "Confirming email, security answer is:",
-    req.session.data.securityAnswer
-  );
-
-  // Store the confirmed email
-  req.session.data.confirmedEmail = req.body.email;
-
-  console.log("Email confirmed:", req.body.email);
-  console.log("Session data after email confirmation:", req.session.data);
-
   res.redirect("/progress-saved");
-});
-
-router.get("/confirm-email", (req, res) => {
-  res.render("confirm-email");
 });
 
 router.get("/notify-email", (req, res) => {
