@@ -1,0 +1,31 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+You cannot resume your form – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            The link does not work
+        </h1>
+
+        <p class="govuk-body">
+            Go back to the email with the magic link and try again.
+        </p>
+
+        <p class="govuk-body">
+            If you typed the web address, check it is correct.
+        </p>
+
+        <p class="govuk-body">
+            If you pasted the web address, check you copied the entire address.
+        </p>
+
+    </div>
+</div>
+
+{% endblock %}
